@@ -1,0 +1,742 @@
+
+> priority-queue@1.0.0 test C:\Users\MEOW\store\PQ\priority_queue
+> mocha -r ./test/setup-mocha.js
+
+
+
+  MaxHeap
+    #constructor
+      1) assigns null to this.root
+      2) assigns [] to this.parentNodes
+    #push
+      3) calls insertNode with new node having passed data and priority
+      4) calls shiftNodeUp with new node having passed data and priority
+    #insertNode
+      5) assings passed node to this.root if heap is empty
+      6) inserts nodes to correct places
+      7) maintains this.parentNodes in correct state
+    #shiftNodeUp
+      8) "before each" hook for "shifts node up until heap property is valid"
+    #clear
+      9) assigns null to root and [] to parentNodes
+    #pop
+      √ does nothing if heap is empty
+      10) returns data associated with root
+      11) calls detachRoot
+      12) calls restoreRootFromLastInsertedNode with detached root
+      13) calls shiftNodeDown with current heap root
+    #detachRoot
+      14) assigns null to this.root
+      15) removes root from parentNodes
+      √ returns detached root
+    #restoreRootFromLastInsertedNode
+      16) should remove last inserted node and assing it to root
+      17) should maintain correct state of parentNodes
+    #shiftNodeDown
+      18) "before each" hook for "shifts node down until heap property is valid"
+    #size
+      19) returns current size of heap
+    #isEmpty
+      20) reutrns true if heap is empty
+
+  Node
+    #constructor
+      21) assigns passed data and priority to this
+      22) assigns this.parent, this.left and this.right to null
+    #appendChild
+      23) assigns passed child to this.left
+      24) assigns passed child to this.right if this.left exists
+      25) does nothing if this.left and this.right exist
+    #removeChild
+      26) assing null to this.left if passed node is left child
+      27) assing null to this.right if passed node is right child
+      28) throws error if passed node is not a child of this node
+      29) assigns null to child.parent
+    #remove
+      √ does nothing if node does not have parent
+      30) calls child.parent.removeChild with child as arg
+    #swapWithParent
+      √ does nothing if node does not have parent
+      31) updates parent.parent
+      32) updates child.parent
+      33) updates parent.child.parent
+      34) updates children of node and parent node
+      35) maintains correct state of parent.parent.left and parent.parent.right
+
+  PriorityQueue
+    #constructor
+      √ assings passed maxSize or set it to default value 30
+      36) assings new MaxHeap to this.heap
+    #push
+      37) calls heap.push with passed data and priority
+      38) throws an error if queue has max size
+    #shift
+      39) calls heap.pop
+      40) returns value of removed node
+      41) throws an error if queue is empty
+      42) should return items sorted by priority
+      43) should handle items with same priority (return in the same order this items have been added)
+    #size
+      44) returns current size of queue
+    #isEmpty
+      45) return true if queue is empty
+
+
+  5 passing (88ms)
+  45 failing
+
+  1) MaxHeap #constructor assigns null to this.root:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:9:22)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  2) MaxHeap #constructor assigns [] to this.parentNodes:
+     AssertionError: expected undefined to deeply equal []
+      at Assertion.assertEqual (C:\Users\MEOW\store\PQ\priority_queue\node_modules\chai\lib\chai\core\assertions.js:485:19)
+      at Assertion.ctx.(anonymous function) [as equal] (C:\Users\MEOW\store\PQ\priority_queue\node_modules\chai\lib\chai\utils\addMethod.js:41:25)
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:13:34)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  3) MaxHeap #push calls insertNode with new node having passed data and priority:
+     AssertionError: expected insertNode to have been called exactly once, but it was called 0 times
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:29:37)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  4) MaxHeap #push calls shiftNodeUp with new node having passed data and priority:
+     AssertionError: expected shiftNodeUp to have been called exactly once, but it was called 0 times
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:40:38)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  5) MaxHeap #insertNode assings passed node to this.root if heap is empty:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:58:22)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  6) MaxHeap #insertNode inserts nodes to correct places:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:76:22)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  7) MaxHeap #insertNode maintains this.parentNodes in correct state:
+     TypeError: Cannot read property '0' of undefined
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:95:24)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  8) MaxHeap #shiftNodeUp "before each" hook for "shifts node up until heap property is valid":
+     TypeError: Cannot read property 'appendChild' of undefined
+      at Context.beforeEach (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:138:15)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  9) MaxHeap #clear assigns null to root and [] to parentNodes:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:206:22)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  10) MaxHeap #pop returns data associated with root:
+     AssertionError: expected undefined to equal 100
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:226:23)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  11) MaxHeap #pop calls detachRoot:
+     AssertionError: expected detachRoot to have been called at least once, but it was never called
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:240:37)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  12) MaxHeap #pop calls restoreRootFromLastInsertedNode with detached root:
+     AssertionError: expected restoreRootFromLastInsertedNode to have been called with arguments {  }
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:254:59)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  13) MaxHeap #pop calls shiftNodeDown with current heap root:
+     TypeError: Cannot read property 'right' of undefined
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:263:42)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  14) MaxHeap #detachRoot assigns null to this.root:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:283:22)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  15) MaxHeap #detachRoot removes root from parentNodes:
+     TypeError: Cannot read property '0' of undefined
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:292:24)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  16) MaxHeap #restoreRootFromLastInsertedNode should remove last inserted node and assing it to root:
+     TypeError: Cannot read property 'right' of undefined
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:318:35)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  17) MaxHeap #restoreRootFromLastInsertedNode should maintain correct state of parentNodes:
+     TypeError: Cannot read property 'left' of undefined
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:331:23)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  18) MaxHeap #shiftNodeDown "before each" hook for "shifts node down until heap property is valid":
+     TypeError: Cannot read property 'appendChild' of undefined
+      at Context.beforeEach (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:352:15)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  19) MaxHeap #size returns current size of heap:
+     AssertionError: expected undefined to equal 0
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:417:24)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  20) MaxHeap #isEmpty reutrns true if heap is empty:
+     AssertionError: expected undefined to equal true
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\max-heap.spec.js:438:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  21) Node #constructor assigns passed data and priority to this:
+     AssertionError: expected undefined to equal 42
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:8:25)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  22) Node #constructor assigns this.parent, this.left and this.right to null:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:13:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  23) Node #appendChild assigns passed child to this.left:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:31:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  24) Node #appendChild assigns passed child to this.right if this.left exists:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:39:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  25) Node #appendChild does nothing if this.left and this.right exist:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:48:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  26) Node #removeChild assing null to this.left if passed node is left child:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:67:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  27) Node #removeChild assing null to this.right if passed node is right child:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:72:28)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  28) Node #removeChild throws error if passed node is not a child of this node:
+     AssertionError: expected [Function] to throw an error
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:78:15)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  29) Node #removeChild assigns null to child.parent:
+     AssertionError: expected undefined to equal null
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:87:32)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  30) Node #remove calls child.parent.removeChild with child as arg:
+     AssertionError: expected removeChild to have been called exactly once, but it was called 0 times
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:110:43)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  31) Node #swapWithParent updates parent.parent:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:131:29)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  32) Node #swapWithParent updates child.parent:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:143:28)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  33) Node #swapWithParent updates parent.child.parent:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:156:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  34) Node #swapWithParent updates children of node and parent node:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:171:26)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  35) Node #swapWithParent maintains correct state of parent.parent.left and parent.parent.right:
+     AssertionError: expected undefined to equal {}
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\node.spec.js:191:25)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  36) PriorityQueue #constructor assings new MaxHeap to this.heap:
+     AssertionError: expected undefined to be an instance of MaxHeap
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:17:35)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  37) PriorityQueue #push calls heap.push with passed data and priority:
+     TypeError: Cannot read property 'push' of undefined
+      at Object.spy (C:\Users\MEOW\store\PQ\priority_queue\node_modules\sinon\lib\sinon\spy.js:41:72)
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:29:10)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  38) PriorityQueue #push throws an error if queue has max size:
+     AssertionError: expected [Function] to throw an error
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:42:15)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  39) PriorityQueue #shift calls heap.pop:
+     TypeError: Cannot read property 'pop' of undefined
+      at Object.spy (C:\Users\MEOW\store\PQ\priority_queue\node_modules\sinon\lib\sinon\spy.js:41:72)
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:56:10)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  40) PriorityQueue #shift returns value of removed node:
+     AssertionError: expected undefined to equal 0
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:63:25)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  41) PriorityQueue #shift throws an error if queue is empty:
+     AssertionError: expected [Function] to throw an error
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:69:15)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  42) PriorityQueue #shift should return items sorted by priority:
+     AssertionError: expected undefined to equal 2
+      at expectedData.forEach.d (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:87:51)
+      at Array.forEach (native)
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:87:17)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  43) PriorityQueue #shift should handle items with same priority (return in the same order this items have been added):
+     AssertionError: expected undefined to equal 3
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:101:26)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:322:7
+      at done (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:291:5)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:352:7)
+      at Hook.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:299:10)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  44) PriorityQueue #size returns current size of queue:
+     AssertionError: expected undefined to equal 1
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:111:24)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+  45) PriorityQueue #isEmpty return true if queue is empty:
+     AssertionError: expected undefined to equal true
+      at Context.it (C:\Users\MEOW\store\PQ\priority_queue\test\queue.spec.js:133:27)
+      at callFn (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:334:21)
+      at Test.Runnable.run (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runnable.js:327:7)
+      at Runner.runTest (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:429:10)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:535:12
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:349:14)
+      at C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:359:7
+      at next (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:285:14)
+      at Immediate.<anonymous> (C:\Users\MEOW\store\PQ\priority_queue\node_modules\mocha\lib\runner.js:327:5)
+
+
+

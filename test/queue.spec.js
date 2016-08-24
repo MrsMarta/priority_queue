@@ -3,7 +3,7 @@ const MaxHeap = require('../src/max-heap');
 
 describe('PriorityQueue', () => {
 	describe('#constructor', () => {
-		it('assings passed maxSize or set it to default value 30', () => {
+		it('assigns passed maxSize or set it to default value 30', () => {
 			const q = new Queue(10);
 			const qWithDefaultMaxSize = new Queue();
 
@@ -11,7 +11,7 @@ describe('PriorityQueue', () => {
 			expect(qWithDefaultMaxSize.maxSize).to.equal(30);
 		});
 
-		it('assings new MaxHeap to this.heap', () => {
+		it('assigns new MaxHeap to this.heap', () => {
 			const q = new Queue();
 
 			expect(q.heap).to.be.instanceof(MaxHeap);
