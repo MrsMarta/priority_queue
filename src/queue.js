@@ -19,13 +19,7 @@ class PriorityQueue {
 		{
 			if (this.size() >= this.maxSize) 
 			{
-				try 
-				{
-  					throw new Error('Out of queue capacity');
-				} catch (e) 
-				{
-  					alert(e.name + ': ' + e.message);
-				}
+				throw "Error, out of heap capacity";
 			}
 		}
 	}

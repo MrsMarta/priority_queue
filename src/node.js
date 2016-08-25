@@ -12,14 +12,30 @@ class Node {
 		{
 			if (this.left == null) 
 				{
-					this.left = node;
+					node.parent = this;
+					this.left = node;	
 				} else { 
+					node.parent = this;
 					this.right = node;
 				}
 		}
 	}
 
 	removeChild(node) {
+		if (node == this.left) 
+		{
+			this.left = null;
+			node.parent = null;
+
+			
+		} else if (node == this.right) 
+		{
+			this.right = null;
+			node.parent = null;
+			
+		} else {
+			throw "Error, passed node is not a child of this node";
+		}
 
 	}
 
