@@ -8,18 +8,17 @@ class Node {
 	}
 
 	appendChild(node) {
-		if (this.left == null || this.right == null) 
-		{
 			if (this.left == null) 
 				{
 					node.parent = this;
 					this.left = node;	
-				} else { 
+				} else if (this.right == null) 
+				{ 
 					node.parent = this;
 					this.right = node;
 				}
 		}
-	}
+	
 
 	removeChild(node) {
 		if (node == this.left) 
@@ -40,6 +39,10 @@ class Node {
 	}
 
 	remove() {
+		if (this.parent != null)
+		{
+			this.parent.removeChild(this);
+		}
 
 	}
 
