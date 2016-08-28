@@ -47,7 +47,12 @@ class Node {
 	}
 
 	swapWithParent() {
-		
+		if (this.parent != null) 
+		{
+			let pp = this.parent.parent;
+			this.parent.parent = this;
+			this.parent = pp;
+		}
 	}
 }
 
