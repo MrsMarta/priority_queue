@@ -56,10 +56,10 @@ class Node {
 			
 			this.parent.parent = this;
 			this.parent = pp;
-			if (p.right != null && p.right == this) 
+			if (p.left != null && p.right == this) 
 			{
 				p.left.parent = this;
-			} else if (p.left != null && p.left == this ) { 
+			} else if (p.right != null && p.left == this ) { 
 				p.right.parent = this; 
 			}
 
