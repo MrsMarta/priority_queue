@@ -15,12 +15,9 @@ class PriorityQueue {
 	push(data, priority) 
 	{
 		this.heap.push(data, priority);
-		if (this.maxSize != null) 
+		if (this.maxSize != null && this.size() >= this.maxSize) 
 		{
-			if (this.size() >= this.maxSize) 
-			{
-				throw "Error, out of heap capacity";
-			}
+			throw "Error, out of heap capacity";
 		}
 	}
 
