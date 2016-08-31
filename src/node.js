@@ -62,6 +62,16 @@ class Node {
 			} else if (p.right != null && p.left == this ) { 
 				p.right.parent = this; 
 			}
+			this.right = p.right;
+			this.left = p;
+			p.left = l;
+			if (pp != null && p == pp.left) 
+			{
+				pp.left = this;
+			} else if (pp != null && p == pp.right) 
+			{
+				pp.right = this;
+			}
 
 		}
 	}
