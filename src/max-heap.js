@@ -61,9 +61,13 @@ class MaxHeap {
 			node.swapWithParent();
 			this.shiftNodeUp(node);
 		}
-		//this.parentNodes.unshift(node);
-		//this.parentNodes.pop();
-		
+		if ((node.left == root) && (node.right != null)) 
+		{
+			this.parentNodes.pop();
+			let poppedNode = this.parentNodes.pop();
+			this.parentNodes.unshift(poppedNode);
+			this.parentNodes.unshift(root);
+		}
 	}
 
 	shiftNodeDown(node) {
