@@ -14,11 +14,21 @@ class MaxHeap {
 	}
 
 	pop() {
-		
+		if (this.root != null)
+		{
+			return this.root.data;
+		}
 	}
 
 	detachRoot() {
-		
+		let rootIndex = this.parentNodes.indexOf(this.root);
+		let root = this.root;
+		if (rootIndex != -1)
+		{
+			this.parentNodes.splice(rootIndex, 1);
+		}
+		this.root = null;
+		return root;
 	}
 
 	restoreRootFromLastInsertedNode(detached) {
@@ -34,7 +44,8 @@ class MaxHeap {
 	}
 
 	clear() {
-		
+		this.root = null;
+		this.parentNodes = [];
 	}
 
 	insertNode(node) {
