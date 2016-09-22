@@ -53,7 +53,7 @@ class Node {
 			let p = this.parent;
 			let r = this.right;
 			let l = this.left;
-			
+			//rewrite this method
 			this.parent.parent = this;
 			this.parent = pp;
 			if (p.left != null && p.right == this) 

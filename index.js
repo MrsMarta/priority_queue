@@ -2,31 +2,28 @@ const MaxHeap = require('./src/max-heap');
 const Node = require('./src/node');
 h = new MaxHeap();
 
-h.root = new Node(0, 10);
-h.root.appendChild(new Node(1, 5));
-h.root.appendChild(new Node(2, 7));
-h.root.left.appendChild(new Node(3, 20));
+h.root = new Node(0, 3);
+			h.root.appendChild(new Node(1, 20));
+			h.root.appendChild(new Node(2, 7));
+			h.root.left.appendChild(new Node(3, 5));
+
 h.parentNodes = [
 				h.root.left,
 				h.root.right,
 				h.root.left.left,
 			];
+
+h.shiftNodeDown(h.root);
+
+let n = h.root; // = h.root.left
+let n1 = h.root.left.left; // = h.root
+
 const correctParentNodesOrderAfterShiftUp = [
-				h.root,
+				h.root.left.left,
 				h.root.right,
-				h.root.left
+				h.root
 			];
 
-h.shiftNodeUp(h.root.left.left);
-
-let n = h.parentNodes[0];
-let n1 = h.parentNodes[1];
-let n3 = h.parentNodes[2];
-let a = correctParentNodesOrderAfterShiftUp[0];
-let a1 = correctParentNodesOrderAfterShiftUp[1];
-let a3 = correctParentNodesOrderAfterShiftUp[2];
-//expect(h.parentNodes[0]).to.equal(correctParentNodesOrderAfterShiftUp[0]);
-//expect(h.parentNodes[1]).to.equal(correctParentNodesOrderAfterShiftUp[1]);
-//expect(h.parentNodes[2]).to.equal(correctParentNodesOrderAfterShiftUp[2]);
-//expect(root.left).to.equal(childOfLeft);
-//expect(root.right).to.equal(childOfRight);
+let a = h.parentNodes[0];
+let a1 = h.parentNodes[1];
+let a2 = h.parentNodes[2];
